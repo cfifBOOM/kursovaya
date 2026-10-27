@@ -34,6 +34,8 @@ Java 21, Maven, Spring Boot 3.3 (Web, Thymeleaf, Data JPA, Security, Validation)
 - `mvn test` — тест JUnit 5 для проверки регистрации (`RegistrationCheckTest`).
 - При каждой загрузке на GitHub (вкладка Actions) проект собирается, запускается тест, затем само приложение,
   и скрипт `.github/check-scenarios.sh` проходит 12 сценариев из таблицы 8 курсовой.
+- Скриншоты в `docs/screenshots` сняты с запущенного приложения автоматически
+  (`.github/workflows/screenshots.yml`, запускается вручную на вкладке Actions).
 
 ## Структура
     src/main/java/ru/spbu/office/

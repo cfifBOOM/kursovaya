@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     List<Equipment> findByUserOrderByIdDesc(User user);
-    List<Equipment> findByUserAndEquipmentTypeOrderByIdDesc(User user, EquipmentType type);
+    List<Equipment> findByUserAndEquipmentTypeOrderByIdDesc(
+            User user, EquipmentType type);
     Optional<Equipment> findByIdAndUser(Long id, User user);
 }
