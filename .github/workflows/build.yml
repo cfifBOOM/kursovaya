@@ -1,0 +1,33 @@
+# GitHub при каждой загрузке собирает проект, запускает тест JUnit,
+# затем запускает приложение и проходит сценарии из таблицы 8 курсовой.
+name: Сборка и проверка
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v5
+
+      - name: Установить Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Сборка и тест JUnit
+        run: mvn -B package
+
+      - name: Запуск приложения и проверка сценариев
+        run: |
+          java -jar target/office-equipment-1.0.0.jar > app.log 2>&1 &
+          bash .github/check-scenarios.sh
+
+      - name: Лог приложения
+        if: always()
+        run: cat app.log || true

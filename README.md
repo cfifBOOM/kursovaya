@@ -25,14 +25,15 @@ Java 21, Maven, Spring Boot 3.3 (Web, Thymeleaf, Data JPA, Security, Validation)
 
 Открыть http://localhost:8080, зарегистрироваться и войти.
 
-Тесты:
-
-    mvn test
-
 Сборка jar: `mvn clean package`, запуск: `java -jar target/office-equipment-1.0.0.jar`.
 
 Если порт 8080 занят — поменяйте `server.port` в `src/main/resources/application.properties`.
 Чтобы начать с пустой базой, остановите приложение и удалите папку `data`.
+
+## Проверка
+- `mvn test` — тест JUnit 5 для проверки регистрации (`RegistrationCheckTest`).
+- При каждой загрузке на GitHub (вкладка Actions) проект собирается, запускается тест, затем само приложение,
+  и скрипт `.github/check-scenarios.sh` проходит 12 сценариев из таблицы 8 курсовой.
 
 ## Структура
     src/main/java/ru/spbu/office/
