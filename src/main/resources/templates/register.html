@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main>
+    <div class="card narrow">
+        <h2>Регистрация</h2>
+        <div class="alert alert-error" th:if="${error}" th:text="${error}"></div>
+        <form th:action="@{/register}" method="post">
+            <label for="login">Логин</label>
+            <input id="login" name="login" th:value="${login}" required autofocus>
+            <label for="password">Пароль</label>
+            <input id="password" name="password" type="password" required>
+            <p><button class="btn" type="submit">Зарегистрироваться</button></p>
+        </form>
+        <div class="link">Уже есть аккаунт? <a th:href="@{/login}">Войти</a></div>
+    </div>
+</main>
+</body>
+</html>

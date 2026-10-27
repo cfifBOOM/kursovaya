@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Оборудование</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <h1>Учет офисного оборудования</h1>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-light btn-small" type="submit">Выйти</button>
+    </form>
+</header>
+<main>
+    <div class="card" style="max-width:520px;margin:0 auto;">
+        <h2 th:text="${title}"></h2>
+        <form th:action="${action}" th:object="${equipment}" method="post">
+            <label for="name">Название</label>
+            <input id="name" th:field="*{name}">
+            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+            <label for="inventoryNumber">Инвентарный номер</label>
+            <input id="inventoryNumber" th:field="*{inventoryNumber}">
+            <div class="error" th:if="${#fields.hasErrors('inventoryNumber')}" th:errors="*{inventoryNumber}"></div>
+
+            <label for="room">Кабинет</label>
+            <input id="room" th:field="*{room}">
+            <div class="error" th:if="${#fields.hasErrors('room')}" th:errors="*{room}"></div>
+
+            <label for="equipmentType">Тип</label>
+            <select id="equipmentType" th:field="*{equipmentType}">
+                <option value="">— выберите тип —</option>
+                <option th:each="t : ${types}" th:value="${t}" th:text="${t.title}"></option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('equipmentType')}" th:errors="*{equipmentType}"></div>
+
+            <p>
+                <button class="btn" type="submit">Сохранить</button>
+                <a class="btn btn-light" th:href="@{/equipment}">Отмена</a>
+            </p>
+        </form>
+    </div>
+</main>
+</body>
+</html>
